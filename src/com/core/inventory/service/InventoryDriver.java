@@ -12,8 +12,12 @@ public class InventoryDriver {
 	private static final String updateSellCmd = "UPDATESELL";
 	private static final String reportCmd = "REPORT";
 	private static final String updateSellPriceCmd = "UPDATESELLPRICE";
+	static {
+		System.gc();
+	}
 
 	public static void main(String[] args) {
+
 		// TODO Auto-generated method stub
 		try {
 			Scanner scanner = new Scanner(System.in);
@@ -22,6 +26,10 @@ public class InventoryDriver {
 				System.out.print("Enter command,'q' to quit :");
 				// Read User input value
 				lineText = scanner.nextLine();
+				if ("q".equalsIgnoreCase(lineText)) {
+					System.out.println("Exit!");
+					break;
+				}
 				String[] commands = lineText.split(" ");
 				String command = commands[0];
 				if (createCmd.equalsIgnoreCase(command)) {
@@ -38,10 +46,6 @@ public class InventoryDriver {
 					Inventory.report();
 				} else {
 					System.out.println("Invalid Command ");
-				}
-				if ("q".equals(lineText)) {
-					System.out.println("Exit!");
-					break;
 				}
 			}
 			scanner.close();
